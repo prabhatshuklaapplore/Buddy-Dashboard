@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/static/css/main.432dba59.css",
+    "main.js": "/static/js/main.d9720d7b.js",
+    "static/media/happnow_icon.png": "/static/media/happnow_icon.578714b124d9efba3d14.png",
+    "index.html": "/index.html",
+    "main.432dba59.css.map": "/static/css/main.432dba59.css.map",
+    "main.d9720d7b.js.map": "/static/js/main.d9720d7b.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.432dba59.css",
+    "static/js/main.d9720d7b.js"
+  ]
+}
