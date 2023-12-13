@@ -83,3 +83,7 @@
 .logout_btn {
   width: 70%;
 }
+.logo_heading {
+  padding-left: 80px;
+  font-weight: 700 !important;
+}

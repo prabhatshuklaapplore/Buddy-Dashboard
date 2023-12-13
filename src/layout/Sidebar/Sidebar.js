@@ -22,7 +22,6 @@ import StorefrontIcon from "@mui/icons-material/Storefront";
 import ViewCarouselIcon from "@mui/icons-material/ViewCarousel";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import styles from "./Sidebar.module.css";
-import logo from "../../assets/images/happnow_icon.png";
 import logo1 from "../../assets/images/buddy_logo.png";
 
 export const sidebarListArr = [
@@ -63,7 +62,9 @@ const Sidebar = () => {
         <Box className={styles.header_div}>
           <img src={logo1} alt="logo" className={styles.logo} />
           {/* <Typography className={styles.header_name}>HAPP NOW</Typography> */}
+          
         </Box>
+        <Typography className={styles.logo_heading}>BUDDY</Typography>
 
         <List className={styles.list_div}>
           {sidebarListArr.map((val, index) => (

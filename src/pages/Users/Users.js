@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import Layout from "../../layout/Main/Layout";
 import CustomTable from "../../components/Custom/Table/CustomTable";
-import { get, put, post, patch } from "../../config/axios";
+import { get, put, post } from "../../config/axios";
 import { Typography } from "@mui/material";
 import Searchbar from "../../components/Custom/SearchBar/Searchbar";
 import DeleteModal from "../../components/Custom/DeleteModal/DeleteModal";
