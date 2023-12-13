@@ -30,13 +30,13 @@ export const usertableColumns = [
     align: "left",
   },
   {
-    id: "city",
+    id: "homeCountry",
     label: "City",
     minWidth: 70,
     align: "left",
   },
   {
-    id: "country",
+    id: "homeCountry",
     label: "Country",
     minWidth: 70,
     align: "left",
@@ -80,18 +80,6 @@ export const userFormFields = [
     label: "Phone No.",
     type: "text",
     required: true,
-  },
-  {
-    name: "city",
-    label: "City",
-    type: "text",
-    required: false,
-  },
-  {
-    name: "country",
-    label: "Country",
-    type: "text",
-    required: false,
   },
   {
     name: "createdAt",

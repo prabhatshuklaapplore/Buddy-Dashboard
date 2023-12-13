@@ -65,7 +65,7 @@ const Home = () => {
         <div className={styles.main_div}>
           <div className={styles.graph_div}>
             <Graph
-              title="Users Added"
+              title="BUDDY Added"
               fetchData={`/admin/dashboard/user-data?month=${parseInt(
                 selectedMonth
               )}&year=${parseInt(selectedYear)}`}
@@ -74,14 +74,14 @@ const Home = () => {
           </div>
           <div className={styles.graph_div}>
             <Graph
-              title="Vendors Added"
+              title="EXPLORER Added"
               fetchData={`/admin/dashboard/vendor-data?month=${parseInt(
                 selectedMonth
               )}&year=${parseInt(selectedYear)}`}
               chartType={chartType}
             />
           </div>
-          <div className={styles.graph_div}>
+          {/* <div className={styles.graph_div}>
             <Graph
               title="Events Added"
               fetchData={`/admin/dashboard/event-data?month=${parseInt(
@@ -125,7 +125,7 @@ const Home = () => {
               )}&year=${parseInt(selectedYear)}`}
               chartType={chartType}
             />
-          </div>
+          </div> */}
         </div>
       </Layout>
     </>

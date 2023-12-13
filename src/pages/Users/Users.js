@@ -31,6 +31,7 @@ const Users = () => {
 
   const fetchUsers = async (searchValue) => {
     console.log(searchValue);
+    setLoading(true);
     await get(
       `dashUser/getAllAppUsers?page=${page}&limit=${10}&search=${searchValue}&userType=BUDDY`
     )
@@ -82,9 +83,11 @@ const Users = () => {
   };
 
   const handleActive = async (id, active) => {
+    setLoading(true);
     let response = await put(`/dashUser/updateAppUser/?id=${id}`, {
       active: active,
     });
+    setLoading(false);
     setMessage(response.message);
     toastMessage(response.message, "success");
   };
@@ -102,7 +105,6 @@ const Users = () => {
   };
 
   const openModal = (type, dataForEdit) => {
-    console.log("first", dataForEdit);
     if (type === "add") {
       setIsModalOpen(true);
     } else if (type === "edit") {
@@ -121,19 +123,13 @@ const Users = () => {
   };
 
   const handleSubmit = async (formData, isEditing, id) => {
-    console.log(id);
+    setLoading(true);
     try {
       if (isEditing) {
-        formData = {
-          ...formData,
-          // permissionsId: formData.permissions.map((p) => p.value),
-        };
         const { ...data } = formData;
         let response = await put(`/dashUser/updateAppUser?id=${id}`, data);
-        console.log(response);
         setMessage(response.message);
-        setEditData({});
-        setEditModal(false);
+        toastMessage(response.message, "success");
       } else {
         formData = {
           ...formData,
@@ -147,7 +143,9 @@ const Users = () => {
     } catch (err) {
       console.error("Error:", err);
       setMessage("Error while processing the request");
+      toastMessage("Error while updating", "error");
     }
+    setLoading(false);
   };
 
   return (

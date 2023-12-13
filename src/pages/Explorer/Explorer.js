@@ -30,6 +30,7 @@ const Explorer = () => {
   const [editData, setEditData] = useState({});
 
   const fetchUsers = async (searchValue) => {
+    setLoading(true);
     console.log(searchValue);
     await get(
       `dashUser/getAllAppUsers?page=${page}&limit=${10}&search=${searchValue}&userType=EXPLORER`
@@ -82,9 +83,11 @@ const Explorer = () => {
   };
 
   const handleActive = async (id, active) => {
+    setLoading(true);
     let response = await put(`/dashUser/updateAppUser/?id=${id}`, {
       active: active,
     });
+    setLoading(false);
     setMessage(response.message);
     toastMessage(response.message, "success");
   };
@@ -122,11 +125,11 @@ const Explorer = () => {
 
   const handleSubmit = async (formData, isEditing, id) => {
     console.log(id);
+    setLoading(true);
     try {
       if (isEditing) {
         formData = {
           ...formData,
-          // permissionsId: formData.permissions.map((p) => p.value),
         };
         const { ...data } = formData;
         let response = await put(`/dashUser/updateAppUser?id=${id}`, data);
@@ -148,6 +151,7 @@ const Explorer = () => {
       console.error("Error:", err);
       setMessage("Error while processing the request");
     }
+    setLoading(false);
   };
 
   return (
