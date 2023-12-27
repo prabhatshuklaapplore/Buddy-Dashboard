@@ -5,7 +5,7 @@ import { TextField } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import PassTextField from "../../components/Custom/Password/Password";
 import { post } from "../../config/axios";
-
+import { toastMessage } from "../../utils/toastMessage";
 const Login = (props) => {
   const navigate = useNavigate();
   const [formData, setFormData] = React.useState({
@@ -48,6 +48,9 @@ const Login = (props) => {
         })
         .catch((err) => {
           console.log("error", err);
+          toastMessage("Wrong email or password", "error");
+
+          setLoading(false);
         });
     }
   };

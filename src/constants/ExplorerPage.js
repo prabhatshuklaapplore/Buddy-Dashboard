@@ -1,4 +1,4 @@
-export const usertableColumns = [
+export const ExplorertableColumns = [
   {
     id: "S.No",
     label: "id",
@@ -61,7 +61,7 @@ export const usertableColumns = [
   },
 ];
 
-export const userFormFields = [
+export const ExplorerFormFields = [
   { name: "fullname", label: "Full Name", type: "text", required: true },
   {
     name: "gender",

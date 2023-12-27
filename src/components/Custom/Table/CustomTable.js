@@ -72,7 +72,11 @@ const CustomTable = ({
                     <TableCell
                       key={index}
                       align={column.align}
-                      sx={{ fontWeight: "bolder", minWidth: column.minWidth }}
+                      sx={{
+                        fontWeight: "bolder",
+                        minWidth: column.minWidth,
+                        maxWidth: column.maxWidth,
+                      }}
                     >
                       {column.label}
                     </TableCell>
@@ -220,6 +224,8 @@ const CustomTable = ({
                           row?.homeCountry?.split(",")[2]
                         ) : column.label === "City" ? (
                           row?.homeCountry?.split(",")[0]
+                        ) : column.id === "gAddress" ? (
+                          row?.gAddress?.split(",")[2]
                         ) : (
                           getNestedProperty(row, column.id)
                         )}

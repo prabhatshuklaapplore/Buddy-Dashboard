@@ -2,20 +2,17 @@
 import React, { useEffect, useState } from "react";
 import Layout from "../../layout/Main/Layout";
 import CustomTable from "../../components/Custom/Table/CustomTable";
-import { get, put, post, patch } from "../../config/axios";
+import { get, put, post } from "../../config/axios";
 import { Typography } from "@mui/material";
 import Searchbar from "../../components/Custom/SearchBar/Searchbar";
 import DeleteModal from "../../components/Custom/DeleteModal/DeleteModal";
 import { deleteAPI } from "../../helper/apiCallHelper";
-import {
-  ExplorertableColumns,
-  ExplorerFormFields,
-} from "../../constants/ExplorerPage";
 import { useDebouncedValue } from "../../helper/debounce";
 import { toastMessage } from "../../utils/toastMessage";
 import FormModal from "../../components/Custom/FormModal/FormModal";
+import { BuddyFormFields,BuddytableColumns } from "../../constants/BuddyPage";
 
-const Explorer = () => {
+const Buddy = () => {
   const [users, setUsers] = useState([]);
   const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
   const [deleteUser, setDeleteUser] = useState("");
@@ -32,17 +29,16 @@ const Explorer = () => {
   const [editData, setEditData] = useState({});
 
   const fetchUsers = async (searchValue) => {
-    setLoading(true);
     console.log(searchValue);
+    setLoading(true);
     await get(
-      `/api/dashboard/dashUser/getAllAppUsers?page=${page}&limit=${10}&search=${searchValue}&userType=EXPLORER`
+      `/api/dashboard/dashUser/getAllAppUsers?page=${page}&limit=${10}&search=${searchValue}&userType=BUDDY`
     )
       .then((res) => {
-        // console.log("res", res?.data);
         setUsers(
           res?.data.map((item) => ({
             ...item,
-            action: { edit: true, delete: false },
+            action: { edit: false, delete: false },
           }))
         );
         setLoading(false);
@@ -73,7 +69,7 @@ const Explorer = () => {
   };
 
   const handleDeleteUser = async (row) => {
-    let url = `/api/dashboard/dashUser/updateAppUser?id=${row._id}`;
+    let url = `/api/dashboard/dashUser/updateAppUser/?id=${row._id}`;
     let response = await deleteAPI(url);
     console.log("response", response);
     setDeleteModalOpen(false);
@@ -107,7 +103,6 @@ const Explorer = () => {
   };
 
   const openModal = (type, dataForEdit) => {
-    console.log("first", dataForEdit);
     if (type === "add") {
       setIsModalOpen(true);
     } else if (type === "edit") {
@@ -126,19 +121,13 @@ const Explorer = () => {
   };
 
   const handleSubmit = async (formData, isEditing, id) => {
-    console.log(id);
     setLoading(true);
     try {
       if (isEditing) {
-        formData = {
-          ...formData,
-        };
         const { ...data } = formData;
         let response = await put(`/api/dashboard/dashUser/updateAppUser?id=${id}`, data);
-        console.log(response);
         setMessage(response.message);
-        setEditData({});
-        setEditModal(false);
+        toastMessage(response.message, "success");
       } else {
         formData = {
           ...formData,
@@ -152,6 +141,7 @@ const Explorer = () => {
     } catch (err) {
       console.error("Error:", err);
       setMessage("Error while processing the request");
+      toastMessage("Error while updating", "error");
     }
     setLoading(false);
   };
@@ -160,7 +150,7 @@ const Explorer = () => {
     <>
       <Layout>
         <div style={{ padding: "1rem" }}>
-          <Typography variant="h5">Explorers</Typography>
+          <Typography variant="h5">Buddy</Typography>
           <Searchbar
             search={handleSearch}
             placeholder={"Seach by name"}
@@ -168,7 +158,7 @@ const Explorer = () => {
           />
           <CustomTable
             data={users}
-            columns={ExplorertableColumns}
+            columns={BuddytableColumns}
             handleEdit={handleEdit}
             handleDelete={handleDelete}
             handleStatus={handleStatus}
@@ -190,8 +180,8 @@ const Explorer = () => {
         isOpen={isModalOpen || editModal}
         onClose={() => closeModal(editModal ? "edit" : "add")}
         onSubmit={handleSubmit}
-        fields={ExplorerFormFields}
-        header={editModal ? "Edit Explorer" : "Add Explorer"}
+        fields={BuddyFormFields}
+        header={editModal ? "Edit Buddy" : "Add Buddy"}
         initialData={editData}
         isEditing={editModal}
       />
@@ -199,4 +189,4 @@ const Explorer = () => {
   );
 };
 
-export default Explorer;
+export default Buddy;

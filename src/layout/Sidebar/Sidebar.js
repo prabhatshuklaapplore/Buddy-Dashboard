@@ -10,8 +10,10 @@ import {
 } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import GroupIcon from "@mui/icons-material/Group";
+import ContactEmergencyIcon from "@mui/icons-material/ContactEmergency";
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 import EventIcon from "@mui/icons-material/Event";
+import LiveHelpIcon from "@mui/icons-material/LiveHelp";
 import StadiumIcon from "@mui/icons-material/Stadium";
 import SubscriptionsIcon from "@mui/icons-material/Subscriptions";
 import PaymentIcon from "@mui/icons-material/Payment";
@@ -27,10 +29,16 @@ import logo1 from "../../assets/images/buddy_logo.png";
 export const sidebarListArr = [
   { label: "Home", icon: HomeIcon, url: "/" },
   // { label: "Vendors", icon: StorefrontIcon, url: "/vendors" },
-  { label: "Buddy", icon: GroupIcon, url: "/users" },
+  { label: "Buddy", icon: GroupIcon, url: "/buddy" },
   { label: "Explorer", icon: GroupIcon, url: "/explorer" },
-  { label: "Admins", icon: AdminPanelSettingsIcon, url: "/admins" },
-  // { label: "Events", icon: EventIcon, url: "/events" },
+  // { label: "Admins", icon: AdminPanelSettingsIcon, url: "/admins" },
+  { label: "Events", icon: EventIcon, url: "/events" },
+  { label: "FAQ", icon: LiveHelpIcon, url: "/faq" },
+  {
+    label: "City Directory",
+    icon: ContactEmergencyIcon,
+    url: "/citydirectory",
+  },
   // { label: "Venues", icon: StadiumIcon, url: "/venues" },
   // { label: "Subscriptions", icon: SubscriptionsIcon, url: "/subscriptions" },
   // { label: "Payments", icon: PaymentIcon, url: "/payments" },
@@ -62,7 +70,6 @@ const Sidebar = () => {
         <Box className={styles.header_div}>
           <img src={logo1} alt="logo" className={styles.logo} />
           {/* <Typography className={styles.header_name}>HAPP NOW</Typography> */}
-          
         </Box>
         <Typography className={styles.logo_heading}>BUDDY</Typography>
 

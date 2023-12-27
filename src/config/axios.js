@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_BASE_URL = "https://buddy-api.applore.in/api/dashboard";
+const API_BASE_URL = "https://buddy-api.applore.in";
 
 // Create an Axios instance with common configuration
 let token = localStorage.getItem("token");
