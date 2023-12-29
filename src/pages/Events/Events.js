@@ -339,11 +339,11 @@ const Events = () => {
         // const res = await postFiles("/api/app/user/uploadImage", form);
         // const { ...data } = formData;
         // data.asset = res.data.url;
-        
-        // await put(
-        //   `/api/dashboard/features/updateEvent?id=${editData._id}`,
-        //   formData
-        // );
+
+        await put(
+          `/api/dashboard/features/updateEvent?id=${editData._id}`,
+          formData
+        );
         setMessage("Event Successfully updated");
         setEditData({});
         setEditModal(false);
@@ -354,7 +354,7 @@ const Events = () => {
       }
     } catch (err) {
       console.error("Error:", err);
-      // setMessage("Error while processing the request");
+      setMessage("Error while processing the request");
     }
   };
 
