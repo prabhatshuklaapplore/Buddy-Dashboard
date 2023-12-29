@@ -229,6 +229,7 @@ import {
 import { useDebouncedValue } from "../../helper/debounce";
 import styles from "./Events.module.css";
 import FormModal from "../../components/Custom/FormModal/FormModal";
+import AutoCompletePlaces from "../../hooks/autoComplete";
 
 const Events = () => {
   const [events, setEvents] = useState([]);
@@ -338,11 +339,11 @@ const Events = () => {
         // const res = await postFiles("/api/app/user/uploadImage", form);
         // const { ...data } = formData;
         // data.asset = res.data.url;
-        debugger;
-        await put(
-          `/api/dashboard/features/updateEvent?id=${editData._id}`,
-          formData
-        );
+        
+        // await put(
+        //   `/api/dashboard/features/updateEvent?id=${editData._id}`,
+        //   formData
+        // );
         setMessage("Event Successfully updated");
         setEditData({});
         setEditModal(false);
@@ -427,7 +428,7 @@ const Events = () => {
         onClose={() => closeModal(editModal ? "edit" : "add")}
         onSubmit={handleSubmit}
         fields={eventsFormFields}
-        header={editModal ? "Edit Subscription" : "Add Subscription"}
+        header={editModal ? "Edit Events" : "Add Events"}
         initialData={editData}
         isEditing={editModal}
       />
@@ -480,11 +481,11 @@ const Events = () => {
 
                 <tr style={{ border: "1px solid black" }}>
                   <td>Event Start Date & Time</td>
-                  <td>{viewData?.timing?.startTime}</td>
+                  <td>{viewData?.startDate}</td>
                 </tr>
                 <tr style={{ border: "1px solid black" }}>
                   <td>Event End Date & Time</td>
-                  <td>{viewData?.timing?.endTime}</td>
+                  <td>{viewData?.endDate}</td>
                 </tr>
                 <tr style={{ border: "1px solid black" }}>
                   <td>Location</td>
@@ -522,6 +523,7 @@ const Events = () => {
           </Box>
         </Box>
       </Modal>
+      <AutoCompletePlaces />
     </>
   );
 };

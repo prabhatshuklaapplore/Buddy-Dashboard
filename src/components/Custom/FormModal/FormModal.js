@@ -7,7 +7,11 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { Autocomplete, MenuItem, Select } from "@mui/material";
 import style from "./FormModal.module.css";
-
+import AutocompletePlaces from "../../../hooks/autoComplete";
+import PlacesAutocomplete, {
+  geocodeByAddress,
+  getLatLng,
+} from "react-places-autocomplete";
 const FormModal = ({
   isOpen,
   onClose,
@@ -27,6 +31,20 @@ const FormModal = ({
 
   const [formData, setFormData] = useState(initialFormData);
   const [errors, setErrors] = useState(initialErrors);
+
+  const [address, setAddress] = React.useState("");
+
+  const handleSelect = async (value) => {
+    const results = await geocodeByAddress(value);
+    const latLng = await getLatLng(results[0]);
+    setAddress(value);
+    console.log(latLng);
+    setFormData({
+      ...formData,
+      gAddress: results[0].formatted_address,
+      // location.lattitude: latLng.lat,
+    });
+  };
 
   useEffect(() => {
     if (initialData) {
@@ -61,11 +79,13 @@ const FormModal = ({
     } else if (fieldType === "file") {
       const file = event.target.files[0];
       setFormData({ ...formData, [fieldName]: file });
+    } else if (fieldType === "autoComplete") {
+      console.log("hello");
+      // setFormData({ ...formData, [fieldName]: address });
     } else {
       setFormData({ ...formData, [fieldName]: event.target.value });
     }
   };
-
   const handleSubmit = () => {
     if (validateFormData()) {
       console.log(formData);
@@ -184,6 +204,60 @@ const FormModal = ({
                           handleChange(field.name, field.type)(event)
                         }
                       />
+                      {field.required && !formData[field.name] && (
+                        <p
+                          className={style.error_msg}
+                        >{`${field.label} is required`}</p>
+                      )}
+                    </>
+                  ) : field.type === "autoComplete" ? (
+                    <>
+                      <PlacesAutocomplete
+                        value={address}
+                        onChange={setAddress}
+                        onSelect={handleSelect}
+                      >
+                        {({
+                          getInputProps,
+                          suggestions,
+                          getSuggestionItemProps,
+                          loading,
+                        }) => (
+                          <div>
+                            {/* <p>Latitude: {coordinates.lat}</p>
+            <p>Longitude: {coordinates.lng}</p> */}
+
+                            <TextField
+                              {...getInputProps({
+                                placeholder: "Type address",
+                              })}
+                            />
+
+                            <div>
+                              {loading ? <div>...loading</div> : null}
+
+                              {suggestions.map((suggestion) => {
+                                const style = {
+                                  backgroundColor: suggestion.active
+                                    ? "#41b6e6"
+                                    : "#fff",
+                                };
+
+                                return (
+                                  <div
+                                    {...getSuggestionItemProps(suggestion, {
+                                      style,
+                                    })}
+                                  >
+                                    {suggestion.description}
+                                  </div>
+                                );
+                              })}
+                            </div>
+                          </div>
+                        )}
+                      </PlacesAutocomplete>
+
                       {field.required && !formData[field.name] && (
                         <p
                           className={style.error_msg}

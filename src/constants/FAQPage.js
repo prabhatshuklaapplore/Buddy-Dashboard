@@ -1,7 +1,7 @@
 export const faqTableColumns = [
   {
     id: "S.No",
-    label: "id",
+    label: "S.No",
     minWidth: 70,
     align: "left",
   },

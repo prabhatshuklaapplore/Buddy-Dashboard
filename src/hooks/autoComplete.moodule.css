@@ -1,0 +1,34 @@
+/* Styles for the root TextField component */
+.MuiTextField-root {
+  margin-bottom: 16px; /* Adjust the margin as needed */
+}
+
+/* Styles for the input element */
+.MuiInputBase-input {
+  padding: 12px; /* Adjust the padding as needed */
+}
+
+/* Styles for the label */
+.MuiInputLabel-root {
+  color: #333; /* Label color */
+}
+
+/* Styles for the outlined variant */
+.MuiOutlinedInput-root {
+  border-radius: 8px; /* Adjust the border radius as needed */
+}
+
+/* Styles for the focused state */
+.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: #4caf50; /* Adjust the border color for focused state */
+}
+
+/* Styles for the helper text */
+.MuiFormHelperText-root {
+  margin-top: 8px; /* Adjust the margin as needed */
+}
+
+/* Styles for error state */
+.Mui-error .MuiOutlinedInput-notchedOutline {
+  border-color: #f44336; /* Adjust the border color for error state */
+}

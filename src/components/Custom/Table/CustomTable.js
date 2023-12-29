@@ -199,9 +199,13 @@ const CustomTable = ({
                         ) : column.id === "createdAt" ? (
                           moment.utc(row?.createdAt).format("YYYY-MM-DD")
                         ) : column.id === "startDate" ? (
-                          moment.utc(row?.startDate).format("YYYY-MM-DD")
+                          moment
+                            .utc(row?.startDate)
+                            .format("YYYY-MM-DD | HH  : MM")
                         ) : column.id === "endDate" ? (
-                          moment.utc(row?.endDate).format("YYYY-MM-DD")
+                          moment
+                            .utc(row?.endDate)
+                            .format("YYYY-MM-DD | HH  : MM")
                         ) : column.label === "Current Subscription" ? (
                           row?.activeSubscription ? (
                             row?.activeSubscription?.subscriptionTypeId?.name

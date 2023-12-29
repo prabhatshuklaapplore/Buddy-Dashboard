@@ -40,7 +40,7 @@ const Login = (props) => {
       setLoading(true);
 
       let data = { ...formData };
-      await post("/auth/login", data)
+      await post("/api/dashboard/auth/login", data)
         .then((res) => {
           console.log("response", res);
           localStorage.setItem("token", res.data.token);

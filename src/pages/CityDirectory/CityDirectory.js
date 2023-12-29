@@ -190,7 +190,7 @@ const City = () => {
               startIcon={<AddIcon fontSize="large" />}
               style={{ fontWeight: "bold" }}
             >
-              add FAQ
+              add City
             </Button>
           </div>
           <CustomTable

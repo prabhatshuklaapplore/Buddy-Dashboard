@@ -1,7 +1,7 @@
 export const cityDirectoryTableColumns = [
   {
     id: "S.No",
-    label: "id",
+    label: "S.No",
     minWidth: 70,
     align: "left",
   },
@@ -69,6 +69,12 @@ export const cityDirectoryFormFields = [
     name: "asset",
     label: "Image",
     type: "file",
+    required: true,
+  },
+  {
+    name: "category",
+    label: "City Name",
+    type: "text",
     required: true,
   },
 ];

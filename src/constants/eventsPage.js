@@ -25,13 +25,14 @@ export const eventstableColumns = [
     align: "center",
   },
   {
-    id: "timing.startTime",
+    id: "startDate",
     label: "Event start date & time",
     minWidth: 200,
+    type: "datetime-local",
     align: "center",
   },
   {
-    id: "timing.endTime",
+    id: "endDate",
     label: "Event end date & time",
     minWidth: 200,
     align: "center",
@@ -78,17 +79,17 @@ export const eventsFormFields = [
   {
     name: "gAddress",
     label: "Location",
-    type: "text",
+    type: "autoComplete",
     required: false,
   },
   {
-    name: "timing.startTime",
+    name: "startDate",
     label: "Event start date & time",
     type: "datetime-local",
     required: false,
   },
   {
-    name: "timing.endTime",
+    name: "endDate",
     label: "Event end date & time",
     type: "datetime-local",
     required: false,

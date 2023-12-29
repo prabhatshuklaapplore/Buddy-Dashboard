@@ -1,7 +1,7 @@
 export const BuddytableColumns = [
   {
     id: "S.No",
-    label: "id",
+    label: "S.No",
     minWidth: 70,
     align: "left",
   },
