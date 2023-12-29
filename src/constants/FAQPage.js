@@ -84,7 +84,7 @@ export const faqFormFields = [
   {
     name: "description",
     label: "Answer",
-    type: "text",
+    type: "description",
     required: true,
   },
   // {

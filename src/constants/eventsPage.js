@@ -70,12 +70,12 @@ export const eventsFormFields = [
     type: "text",
     required: false,
   },
-  {
-    name: "asset",
-    label: "Image",
-    type: "text",
-    required: false,
-  },
+  // {
+  //   name: "asset",
+  //   label: "Image",
+  //   type: "text",
+  //   required: false,
+  // },
   {
     name: "gAddress",
     label: "Location",
@@ -97,7 +97,7 @@ export const eventsFormFields = [
   {
     name: "description",
     label: "Event description",
-    type: "text",
+    type: "description",
     required: false,
   },
 ];

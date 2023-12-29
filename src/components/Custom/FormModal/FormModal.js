@@ -195,6 +195,21 @@ const FormModal = ({
                         </MenuItem>
                       ))}
                     </Select>
+                  ) : field.type === "description" ? (
+                    <TextField
+                      // label={field.label}
+                      multiline
+                      rows={4}
+                      type={field.type}
+                      id={field.name}
+                      name={field.name}
+                      value={getNestedProperty(formData, fieldname)}
+                      onChange={(event) => handleChange(field.name)(event)}
+                      fullWidth
+                      error={!!errors[field.name]}
+                      helperText={errors[field.name]}
+                      disabled={field.disabled ? field.disabled : false}
+                    />
                   ) : field.type === "file" ? (
                     <>
                       <input
@@ -224,10 +239,8 @@ const FormModal = ({
                           loading,
                         }) => (
                           <div>
-                            {/* <p>Latitude: {coordinates.lat}</p>
-            <p>Longitude: {coordinates.lng}</p> */}
-
                             <TextField
+                              fullWidth
                               {...getInputProps({
                                 placeholder: "Type address",
                               })}
