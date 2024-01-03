@@ -10,7 +10,7 @@ import { deleteAPI } from "../../helper/apiCallHelper";
 import { useDebouncedValue } from "../../helper/debounce";
 import { toastMessage } from "../../utils/toastMessage";
 import FormModal from "../../components/Custom/FormModal/FormModal";
-import { BuddyFormFields,BuddytableColumns } from "../../constants/BuddyPage";
+import { BuddyFormFields, BuddytableColumns } from "../../constants/BuddyPage";
 
 const Buddy = () => {
   const [users, setUsers] = useState([]);
@@ -82,9 +82,12 @@ const Buddy = () => {
 
   const handleActive = async (id, active) => {
     setLoading(true);
-    let response = await put(`/api/dashboard/dashUser/updateAppUser/?id=${id}`, {
-      active: active,
-    });
+    let response = await put(
+      `/api/dashboard/dashUser/updateAppUser/?id=${id}`,
+      {
+        active: active,
+      }
+    );
     setLoading(false);
     setMessage(response.message);
     toastMessage(response.message, "success");
@@ -125,6 +128,7 @@ const Buddy = () => {
     try {
       if (isEditing) {
         const { ...data } = formData;
+        console.log(data);
         let response = await put(`/api/dashboard/dashUser/updateAppUser?id=${id}`, data);
         setMessage(response.message);
         toastMessage(response.message, "success");

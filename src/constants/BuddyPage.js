@@ -53,12 +53,12 @@ export const BuddytableColumns = [
     minWidth: 70,
     align: "center",
   },
-  // {
-  //   id: "action",
-  //   label: "Action",
-  //   minWidth: 100,
-  //   align: "center",
-  // },
+  {
+    id: "action",
+    label: "Action",
+    minWidth: 100,
+    align: "center",
+  },
 ];
 
 export const BuddyFormFields = [
